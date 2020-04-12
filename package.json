@@ -32,7 +32,8 @@
     "rxjs": "^6.5.4",
     "scss": "^0.2.4",
     "typescript": "~3.7.2",
-    "uuid": "^7.0.2"
+    "uuid": "^7.0.2",
+    "yaml": "^1.8.3"
   },
   "scripts": {
     "start": "react-scripts start",
