@@ -3,7 +3,13 @@ const rxjs = require('rxjs');
 const op = require('rxjs/operators');
 const YAML = require('yaml');
 
-
+const blackList = [
+    "com.sankuai.ep.platform.quake",
+    "quake-agent",
+    "test",
+    "org.testng.TestNg",
+    "unknownService",
+];
 async function run() {
     let buffer = fs.readFileSync('./labels.json');
 
@@ -24,6 +30,9 @@ async function run() {
                 }
 
                 const appkey = apply.authIds;
+                if (blackList.indexOf(appkey) >= 0) {
+                    return [];
+                }
                 const labelStr = apply.resourceContent;
                 // 解析标签
                 const labels = labelStr.split('\n');
@@ -62,6 +71,8 @@ async function run() {
     })
     let yaml = YAML.stringify(resources);
     console.log(yaml);
+
+    console.log(resources.length);
 }
 
 
